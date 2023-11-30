@@ -114,19 +114,21 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("JumpCut Apply");
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
         }
-        else if (rb.velocity.y<0) 
+        else if (rb.velocity.y < 0)
         {
             SetGravity(Data.gravityScale * Data.fallGravityMult);
             Debug.Log("JumpFall Apply");
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
+        } else if (isJumping||_isJumpFalling&&Mathf.Abs(rb.velocity.y)<Data.jumpHangTimeThreshold) 
+        {
+            SetGravity(Data.gravityScale * Data.jumpHangGravityMult);
+            Debug.Log("JumpHang Apply");
         }
         else
         {
             SetGravity(Data.gravityScale);
-            Debug.Log("JumpCut Disable");
-        }
-        
-
+            Debug.Log("On The Ground");
+        }       
         #endregion
     }
 
@@ -221,6 +223,12 @@ public class PlayerMovement : MonoBehaviour
         else 
         {
             accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount*Data.runAccelInAir : Data.runDeccelAmount*Data.runDeccelInAir;
+        }
+
+        //让在处于空中的主角移动更加灵敏？
+        if (isJumping||_isJumpFalling&&Mathf.Abs(rb.velocity.y)<Data.jumpHangTimeThreshold) 
+        {
+            accelRate *= Data.jumpHangAccelerationMult;
         }
 
         //velPower可以看作是改变speedDif基数的量，可以理解为对速度再做了一个控制
