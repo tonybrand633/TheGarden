@@ -29,7 +29,11 @@ public class PlayerData : ScriptableObject
     [Header("Jump")]
     public float jumpHeight;
     public float jumpTimeToApex;
+    [Range(0f, 1.5f)] public float wallJumpTime;
+    public float wallJumpLerp;
+    public Vector2 wallJumpForce;
     [HideInInspector]public float jumpForce;
+    public float canJumpAlongFallTime;
 
     [Space(10)]
     [Header("Both Jumps")]
@@ -37,9 +41,15 @@ public class PlayerData : ScriptableObject
     [Range(0,1f)]public float jumpHangGravityMult;
     public float jumpHangTimeThreshold;
 
-    [Space(0.5f)]
+    [Space(2f)]
     public float jumpHangAccelerationMult;
     public float jumpHangMaxSpeedMult;
+
+    [Space(10f)]
+    [Header("Slider")]
+    public bool isASlider;
+    public float slideAccerate;
+    public float slideSpeed;
 
 
     [Space(20)]

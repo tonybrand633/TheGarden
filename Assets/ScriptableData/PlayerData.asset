@@ -26,11 +26,18 @@ MonoBehaviour:
   velPower: 0.9
   jumpHeight: 3
   jumpTimeToApex: 0.3
+  wallJumpTime: 0.5
+  wallJumpLerp: 0.8
+  wallJumpForce: {x: 20, y: 20}
   jumpForce: 20
+  canJumpAlongFallTime: 2
   jumpCutGravityMult: 3
   jumpHangGravityMult: 0.75
   jumpHangTimeThreshold: 1
-  jumpHangAccelerationMult: 5
-  jumpHangMaxSpeedMult: 0
+  jumpHangAccelerationMult: 3
+  jumpHangMaxSpeedMult: 1.5
+  isASlider: 1
+  slideAccerate: 1.5
+  slideSpeed: -30
   jumpInputBufferTime: 0.1
   coyoteTime: 0.1
