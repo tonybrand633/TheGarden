@@ -17,27 +17,27 @@ MonoBehaviour:
   fallGravityMult: 1.5
   maxFallSpeed: 25
   runMaxSpeed: 10
-  runAcceleration: 7.5
-  runAccelAmount: 37.5
-  runDecceleration: 7.5
-  runDeccelAmount: 37.5
-  runAccelInAir: 0.085
+  runAcceleration: 7
+  runAccelAmount: 35
+  runDecceleration: 7
+  runDeccelAmount: 35
+  runAccelInAir: 0.1
   runDeccelInAir: 0.1
   velPower: 0.9
   jumpHeight: 3
   jumpTimeToApex: 0.3
   wallJumpTime: 0.5
   wallJumpLerp: 0.8
-  wallJumpForce: {x: 20, y: 20}
+  wallJumpForce: {x: 10, y: 25}
   jumpForce: 20
   canJumpAlongFallTime: 2
-  jumpCutGravityMult: 3
+  jumpCutGravityMult: 2.5
   jumpHangGravityMult: 0.75
   jumpHangTimeThreshold: 1
   jumpHangAccelerationMult: 3
   jumpHangMaxSpeedMult: 1.5
-  isASlider: 1
-  slideAccerate: 1.5
-  slideSpeed: -30
+  isASlider: 0
+  slideAccerate: 0
+  slideSpeed: 0
   jumpInputBufferTime: 0.1
   coyoteTime: 0.1

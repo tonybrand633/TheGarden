@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    float camSize;
+    Vector3 moveToPos;
+
+    public Transform LeftBound;
+    public Transform RightBound;
+    
     public Transform target;
+
+    void Start()
+    {
+        camSize = Camera.main.orthographicSize;
+    }
 
     void Update()
     {
@@ -18,11 +29,9 @@ public class CameraFollow : MonoBehaviour
         {
             Vector3 targetPosition = target.transform.position;
 
-            //Vector3 moveToPos = Vector3.Lerp(transform.position, targetPosition, u*Time.deltaTime);
-
-            Vector3 moveToPos = targetPosition;
-
-            moveToPos = new Vector3(targetPosition.x, targetPosition.y, -10);
+            //Vector3 moveToPos = Vector3.Lerp(transform.position, targetPosition, u*Time.deltaTime);           
+            moveToPos.x = Mathf.Clamp(targetPosition.x,LeftBound.transform.position.x+camSize*2,RightBound.transform.position.x-camSize*2);
+            moveToPos.z = transform.position.z;
 
             transform.position = moveToPos;
         }

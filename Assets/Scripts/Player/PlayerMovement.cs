@@ -237,7 +237,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (CanJumpCut()||CanWallJumpCut())
         {
-            Debug.Log("JumpCut");
             _isJumpCut = true;
         }
     }
