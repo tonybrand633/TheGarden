@@ -176,29 +176,29 @@ public class PlayerMovement : MonoBehaviour
         if (isSliding)
         {
             SetGravity(0);
-            Debug.Log("Slider Apply");
+            //Debug.Log("Slider Apply");
         }
         else if (_isJumpCut)
         {
             SetGravity(Data.gravityScale * Data.jumpCutGravityMult);
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
-            Debug.Log("JumpCut Apply");
+            //Debug.Log("JumpCut Apply");
         }
         else if (rb.velocity.y < 0 && lastOnGroundTime < 0 && !isSliding)
         {
             SetGravity(Data.gravityScale * Data.fallGravityMult);
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
-            Debug.Log("JumpFall Apply");
+            //Debug.Log("JumpFall Apply");
         }
         else if (isJumping || _isJumpFalling  || isWallJumping && Mathf.Abs(rb.velocity.y) < Data.jumpHangTimeThreshold)
         {
             SetGravity(Data.gravityScale * Data.jumpHangGravityMult);
-            Debug.Log("JumpHang Apply");
+            //Debug.Log("JumpHang Apply");
         }
         else
         {
             SetGravity(Data.gravityScale);
-            Debug.Log("On The Ground");
+            //Debug.Log("On The Ground");
         }
 
         #endregion

@@ -16,11 +16,11 @@ MonoBehaviour:
   gravityScale: 6.8027205
   fallGravityMult: 1.5
   maxFallSpeed: 25
-  runMaxSpeed: 10
+  runMaxSpeed: 7
   runAcceleration: 7
-  runAccelAmount: 35
+  runAccelAmount: 50
   runDecceleration: 7
-  runDeccelAmount: 35
+  runDeccelAmount: 50
   runAccelInAir: 0.1
   runDeccelInAir: 0.1
   velPower: 0.9
@@ -36,8 +36,8 @@ MonoBehaviour:
   jumpHangTimeThreshold: 1
   jumpHangAccelerationMult: 3
   jumpHangMaxSpeedMult: 1.5
-  isASlider: 0
-  slideAccerate: 0
-  slideSpeed: 0
+  isASlider: 1
+  slideAccerate: 5.85
+  slideSpeed: -8.61
   jumpInputBufferTime: 0.1
   coyoteTime: 0.1
