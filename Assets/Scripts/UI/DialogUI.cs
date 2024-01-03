@@ -12,6 +12,12 @@ public class DialogUI : MonoBehaviour
     public TextMeshProUGUI textComponent;
 
     public float textSpeed;
+
+    void Awake()
+    {
+        textComponent = transform.Find("DialogText").GetComponent<TextMeshProUGUI>();    
+    }
+
     // Start is called before the first frame update
     void Start()
     {

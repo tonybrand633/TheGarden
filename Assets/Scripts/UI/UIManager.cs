@@ -11,26 +11,19 @@ public class UIManager : MonoBehaviour
     {
         get
         {
-            if (instance == null)
+            if (instance == null) 
             {
                 GameObject uiManagerObject = new GameObject("UIManager");
                 instance = uiManagerObject.AddComponent<UIManager>();
-                DontDestroyOnLoad(uiManagerObject);
             }
             return instance;
         }
+
     }
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 }

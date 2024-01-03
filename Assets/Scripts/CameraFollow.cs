@@ -10,11 +10,12 @@ public class CameraFollow : MonoBehaviour
     public Transform LeftBound;
     public Transform RightBound;
     
-    public Transform target;
+    Transform target;
 
     void Start()
     {
         camSize = Camera.main.orthographicSize;
+        target = GameObject.Find("Player").GetComponent<Transform>();
     }
 
     void Update()
@@ -29,8 +30,15 @@ public class CameraFollow : MonoBehaviour
         {
             Vector3 targetPosition = target.transform.position;
 
-            //Vector3 moveToPos = Vector3.Lerp(transform.position, targetPosition, u*Time.deltaTime);           
-            moveToPos.x = Mathf.Clamp(targetPosition.x,LeftBound.transform.position.x+camSize*2,RightBound.transform.position.x-camSize*2);
+            //Vector3 moveToPos = Vector3.Lerp(transform.position, targetPosition, u*Time.deltaTime);
+            if (LeftBound && RightBound != null)
+            {
+                moveToPos.x = Mathf.Clamp(targetPosition.x, LeftBound.transform.position.x + camSize * 2, RightBound.transform.position.x - camSize * 2);
+            }
+            else 
+            {
+                moveToPos.x = targetPosition.x;
+            }            
             moveToPos.z = transform.position.z;
 
             transform.position = moveToPos;

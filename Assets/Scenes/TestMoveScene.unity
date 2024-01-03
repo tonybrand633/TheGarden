@@ -1169,7 +1169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfedd231f1c9c8f4e8d6afea1b6dfb91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1969471130}
+  LeftBound: {fileID: 0}
+  RightBound: {fileID: 0}
 --- !u!1001 &1280435544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1227,8 +1228,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3a64d754af82aa48b0dc3ad28f14085, type: 3}
---- !u!4 &1969471130 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6310591023052547640, guid: e3a64d754af82aa48b0dc3ad28f14085, type: 3}
-  m_PrefabInstance: {fileID: 1280435544}
-  m_PrefabAsset: {fileID: 0}
