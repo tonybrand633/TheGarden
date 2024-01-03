@@ -1,26 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameManager : MonoBehaviour
 {
+    const string GameManagerKey = "GameManager";
 
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        DontDestroyOnLoad(gameObject); 
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitGameManager() 
     {
+        Addressables.InstantiateAsync(GameManagerKey).Completed += OnInstantiated;
+    }
 
+    static void OnInstantiated(AsyncOperationHandle<GameObject> operationHandle) 
+    {
+        DontDestroyOnLoad(operationHandle.Result);
     }
 }
