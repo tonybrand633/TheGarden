@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class NonPlayerCharacter : MonoBehaviour,ICanTalkWith
 {
-
+    public DialogText dialogText;
+    public string[] textContent;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        textContent = dialogText.text;
     }
 
     // Update is called once per frame
@@ -20,6 +21,11 @@ public class NonPlayerCharacter : MonoBehaviour,ICanTalkWith
 
     public void OpenDialogUI()
     {
-        throw new System.NotImplementedException();
+        UIManager.Instance.OpenDialog(textContent);
+    }
+
+    public void NextLine() 
+    {
+        UIManager.Instance.NextDialogLine();
     }
 }

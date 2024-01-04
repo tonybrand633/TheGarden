@@ -305,6 +305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 541395939}
   - component: {fileID: 541395940}
+  - component: {fileID: 541395941}
   m_Layer: 10
   m_Name: NPC01
   m_TagString: Untagged
@@ -350,6 +351,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &541395941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541395938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1939686c1f47ba44ae9054cd510e900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogText: {fileID: 11400000, guid: 3ba2278e52de7e94aa4749aedd9d7797, type: 2}
+  textContent: []
 --- !u!1 &595649105
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &595649106
 RectTransform:
   m_ObjectHideFlags: 0
@@ -442,8 +457,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines: []
   index: 0
-  textComponent: {fileID: 0}
-  textSpeed: 0
+  textComponent: {fileID: 1216963073}
+  textSpeed: 0.1
 --- !u!1 &606840891
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +614,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01ecb25de86e354ebaee1db67f9536f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDialog: 0
+  dialogOpen: 0
+  dialogClose: 0
+  curNPC: {fileID: 0}
+  SymbolRecive: 
 --- !u!1 &941002828
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1216963072
 RectTransform:
   m_ObjectHideFlags: 0

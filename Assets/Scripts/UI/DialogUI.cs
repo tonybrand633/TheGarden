@@ -15,20 +15,41 @@ public class DialogUI : MonoBehaviour
 
     void Awake()
     {
-        textComponent = transform.Find("DialogText").GetComponent<TextMeshProUGUI>();    
+         
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        textComponent.text = string.Empty;
-        ShowChar();
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void StartDialog(string[]text) 
+    {
+        lines = text;
+        if (textComponent!=null) 
+        {
+            ShowChar();
+        }
+    }
+
+    public void NextDialog() 
+    {
+        if (textComponent.text == lines[index])
+        {
+            index++;
+            NextLine();
+        }
+        else 
+        {
+            StopAllCoroutines();
+            textComponent.text = lines[index];
+        }
     }
 
     public void ShowChar() 
@@ -39,9 +60,25 @@ public class DialogUI : MonoBehaviour
     IEnumerator ShowTextByTime() 
     {
         foreach (char c in lines[index].ToCharArray())
-        {
+         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
+        }
+    }
+
+    void NextLine() 
+    {
+        if (index < lines.Length)
+        {
+            textComponent.text = string.Empty;
+            StartCoroutine(ShowTextByTime());
+        }
+        else 
+        {
+            gameObject.SetActive(false);
+            index = 0;
+            textComponent.text = string.Empty;
+            UIManager.Instance.SendMessageToPlayer(1);
         }
     }
 }
