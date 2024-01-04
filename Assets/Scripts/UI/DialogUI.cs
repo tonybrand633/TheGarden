@@ -6,32 +6,17 @@ using System.Linq;
 
 public class DialogUI : MonoBehaviour
 {
+    [Header("显示文本选项")]
     public string[] lines;
     public int index;
-
-    public TextMeshProUGUI textComponent;
-
     public float textSpeed;
 
-    void Awake()
-    {
-         
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    TextMeshProUGUI textComponent;
 
     public void StartDialog(string[]text) 
     {
         lines = text;
+        textComponent = transform.Find("DialogText").GetComponent<TextMeshProUGUI>();
         if (textComponent!=null) 
         {
             ShowChar();
