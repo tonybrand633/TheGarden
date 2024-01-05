@@ -10,6 +10,10 @@ public class PlayerBehavor : MonoBehaviour
 
     public NonPlayerCharacter curNPC;
 
+    //SomeSingal
+    //Index0：对话框打开
+    //Index1: 对话框结束
+    //Index2:
     public bool[] SymbolRecive;
 
     PlayerMovement playerMovement;
@@ -66,6 +70,8 @@ public class PlayerBehavor : MonoBehaviour
             curNPC = null;
         }
     }
+
+    //接收UIManager发出的通知
 
     public void RecieveMessageFromUIManager(UIMessageSender result) 
     {

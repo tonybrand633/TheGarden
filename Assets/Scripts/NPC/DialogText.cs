@@ -5,5 +5,7 @@ using UnityEngine;
 
 public class DialogText : ScriptableObject
 {
-    public string[] text;
+    public string[] openText;
+    public string[] loopText;
+    public string[] hiddenText;
 }

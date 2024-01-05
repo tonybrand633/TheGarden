@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
 
     /// <summary>
     ///  UIDialog Methods
+    ///  UI的对话方法
     /// </summary>
     public void OpenDialog(string[]textContent) 
     {
@@ -65,10 +66,14 @@ public class UIManager : MonoBehaviour
         dialogUI.NextDialog();
     }
 
+    /// <summary>
+    /// Condition Sender
+    /// 一些信息传递的同步
+    /// </summary>
+    /// <param name="index"></param>
     public void SendMessageToPlayer(int index) 
     {
         UIMessageSender sender = new UIMessageSender(index,playerBehavor.SymbolRecive);
         playerBehavor.RecieveMessageFromUIManager(sender);
-    }
-    
+    }    
 }
