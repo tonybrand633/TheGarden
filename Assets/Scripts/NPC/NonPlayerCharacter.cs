@@ -48,15 +48,19 @@ public class NonPlayerCharacter : MonoBehaviour,ICanTalkWith
 
     public void OpenDialogUI()
     {
+        //若不能对话，则返回
         if (!canTalk) 
         {
             return;
         }
+        //如果有秘密对话，则触发秘密/剧情对话
         if (dialogTrigger) 
         {
             dialogTrigger = false;
             UIManager.Instance.OpenDialog(hiddenContent);
-        }else if(isFirstTalk&&!dialogTrigger)
+        }
+        //如果是初次对话，则触发初次对话文本
+        else if(isFirstTalk&&!dialogTrigger)
         {
             if (senderRecieveObject.Length!=0) 
             {
@@ -69,11 +73,11 @@ public class NonPlayerCharacter : MonoBehaviour,ICanTalkWith
             UIManager.Instance.OpenDialog(openContent);
             isFirstTalk = false;
         }
+        //如果有循环对话，则一直触发循环对话
         else if(canLoopTalk)
         {
             int index = Random.Range(0, loopContent.Length);
             string res = loopContent[index];
-            Debug.Log(index);
             string[]result = new string[1] { res};
             UIManager.Instance.OpenDialog(result);
         }

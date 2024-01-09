@@ -8,7 +8,8 @@ public class PlayerBehavor : MonoBehaviour
     public bool dialogOpen;
     public bool dialogClose;
 
-    public NonPlayerCharacter curNPC;
+    public List<GameObject> npcList;
+    public GameObject curNPC;
 
     //SomeSingal
     //Index0：对话框打开
@@ -19,13 +20,10 @@ public class PlayerBehavor : MonoBehaviour
     PlayerMovement playerMovement;
     Rigidbody2D rig;
 
-    void Awake()
-    {
-        
-    }
 
     void Start()
     {
+        npcList = new List<GameObject>();
         playerMovement = GetComponent<PlayerMovement>();
         rig = GetComponent<Rigidbody2D>();
         SymbolRecive = new bool[2] { dialogOpen, dialogClose };
@@ -33,41 +31,76 @@ public class PlayerBehavor : MonoBehaviour
 
     void Update()
     {
-        if (canDialog && Input.GetKeyDown(KeyCode.E)&&!dialogOpen)
+        if (npcList.Count == 0)
         {
-            curNPC.OpenDialogUI();
-        } else if (canDialog&&Input.GetKeyDown(KeyCode.E)&&dialogOpen)
-        {
-            curNPC.NextLine();
-        }
-
-        if (dialogOpen)
-        {
-            rig.velocity = Vector2.zero;
-            rig.isKinematic = true;
-            playerMovement.enabled = false;
+            canDialog = false;
         }
         else 
         {
-            rig.isKinematic = false;
-            playerMovement.enabled = true;
+            canDialog = true;
         }
+
+        if (canDialog && Input.GetKeyDown(KeyCode.E)&&!dialogOpen)
+        {
+            GetTalkNpc();
+            curNPC.GetComponent<NonPlayerCharacter>().OpenDialogUI();
+        } else if (canDialog&&Input.GetKeyDown(KeyCode.E)&&dialogOpen)
+        {
+            curNPC.GetComponent<NonPlayerCharacter>().NextLine();
+        }
+
+        //限制主角移动
+        //if (dialogOpen)
+        //{
+        //    rig.velocity = Vector2.zero;
+        //    rig.freezeRotation = true;
+        //}
+        //else
+        //{
+        //    rig.freezeRotation = false;
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerDetect")) 
+        if (collision.CompareTag("NPC")) 
         {
-            canDialog = true;
-            curNPC = collision.gameObject.GetComponentInParent<NonPlayerCharacter>();
+            curNPC = collision.transform.parent.gameObject;
+            if (!npcList.Contains(curNPC)) 
+            {
+                npcList.Add(curNPC);
+            }
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerDetect"))
+        if (collision.CompareTag("NPC"))
         {
-            canDialog = false;
-            curNPC = null;
+            GameObject curExitNpc = collision.transform.parent.gameObject;
+            if (npcList.Contains(curNPC)) 
+            {
+                npcList.Remove(curExitNpc);
+            }                        
+        }
+    }
+
+    void GetTalkNpc() 
+    {
+        if (npcList.Count>=1) 
+        {
+            GameObject tempNpc = npcList[0];
+            float minDistance = float.MaxValue;
+            foreach (var npc in npcList) 
+            {
+                float curDistance = Vector2.Distance(this.transform.position, npc.transform.position);
+                if (curDistance < minDistance) 
+                {
+                    minDistance = curDistance;  
+                    tempNpc = npc;
+                }
+            }
+            curNPC = tempNpc;
         }
     }
 

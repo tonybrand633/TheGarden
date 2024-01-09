@@ -137,7 +137,8 @@ public class PlayerMovement : MonoBehaviour
             isWallJumping = false;
             _isJumpFalling = false;
             Jump();
-        } else if (CanWallJump() && lastPressJumpTime > 0)
+        }
+        else if (CanWallJump() && lastPressJumpTime > 0)
         {
             isWallJumping = true;
             isJumping = false;
