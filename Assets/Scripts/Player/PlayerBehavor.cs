@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerBehavor : MonoBehaviour
 {
+
     public bool canDialog;
     public bool dialogOpen;
     public bool dialogClose;
@@ -17,14 +18,14 @@ public class PlayerBehavor : MonoBehaviour
     //Index2:
     public bool[] SymbolRecive;
 
-    PlayerMovement playerMovement;
+    PlayerMovement playerMovementScripts;
     Rigidbody2D rig;
 
 
     void Start()
     {
         npcList = new List<GameObject>();
-        playerMovement = GetComponent<PlayerMovement>();
+        playerMovementScripts = GetComponent<PlayerMovement>();
         rig = GetComponent<Rigidbody2D>();
         SymbolRecive = new bool[2] { dialogOpen, dialogClose };
     }
@@ -60,20 +61,11 @@ public class PlayerBehavor : MonoBehaviour
         if (dialogOpen) 
         {
             CloseCurNPCUI();
+            playerMovementScripts.enabled = false;
+        }else if (dialogClose) 
+        {
+            playerMovementScripts.enabled = true;
         }
-
-
-
-        //限制主角移动
-        //if (dialogOpen)
-        //{
-        //    rig.velocity = Vector2.zero;
-        //    rig.freezeRotation = true;
-        //}
-        //else
-        //{
-        //    rig.freezeRotation = false;
-        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
