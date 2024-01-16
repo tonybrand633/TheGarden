@@ -5,7 +5,7 @@ using UnityEngine;
 public class NonPlayerCharacter : MonoBehaviour,ICanTalkWith
 {
     //对话文本的分类设置以及状态
-    bool canTalk;
+    public bool canTalk;
     bool canLoopTalk;
     bool isFirstTalk;
     bool dialogTrigger;
@@ -20,12 +20,20 @@ public class NonPlayerCharacter : MonoBehaviour,ICanTalkWith
     [Header("解锁通知对象")]
     public NonPlayerCharacter[] senderRecieveObject;
 
+    [Header("对话UI显示")]
+    public GameObject pressE;  //需要随着NPC一起转向的物体
+
 
     // Start is called before the first frame update
     void Start()
     {
         canTalk = true;
         isFirstTalk = true;
+
+        if (pressE != null)
+        {
+            pressE.SetActive(false);
+        }
 
         if (dialogText.openText.Length!=0)
         {
@@ -72,6 +80,10 @@ public class NonPlayerCharacter : MonoBehaviour,ICanTalkWith
             }
             UIManager.Instance.OpenDialog(openContent);
             isFirstTalk = false;
+            if (!canLoopTalk) 
+            {
+                canTalk = false;
+            }
         }
         //如果有循环对话，则一直触发循环对话
         else if(canLoopTalk)
@@ -86,5 +98,16 @@ public class NonPlayerCharacter : MonoBehaviour,ICanTalkWith
     public void NextLine() 
     {
         UIManager.Instance.NextDialogLine();
+    }
+
+    public void ShowPressEUI() 
+    {
+        pressE.SetActive(true);
+        pressE.GetComponent<Animator>().Play("PressEAnimation");
+    }
+
+    public void HidePressEUI() 
+    {
+        pressE.SetActive(false);
     }
 }

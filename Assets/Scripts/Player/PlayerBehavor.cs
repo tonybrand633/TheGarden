@@ -31,6 +31,7 @@ public class PlayerBehavor : MonoBehaviour
 
     void Update()
     {
+        GetTalkNpc();
         if (npcList.Count == 0)
         {
             canDialog = false;
@@ -49,6 +50,20 @@ public class PlayerBehavor : MonoBehaviour
             curNPC.GetComponent<NonPlayerCharacter>().NextLine();
         }
 
+        if (curNPC != null)
+        {
+            if (curNPC.GetComponent<NonPlayerCharacter>().canTalk)
+            {
+                ShowPressUI(curNPC);
+            }
+        }
+        if (dialogOpen) 
+        {
+            CloseCurNPCUI();
+        }
+
+
+
         //限制主角移动
         //if (dialogOpen)
         //{
@@ -65,10 +80,10 @@ public class PlayerBehavor : MonoBehaviour
     {
         if (collision.CompareTag("NPC")) 
         {
-            curNPC = collision.transform.parent.gameObject;
-            if (!npcList.Contains(curNPC)) 
+            GameObject cNpc = collision.transform.parent.gameObject;
+            if (!npcList.Contains(cNpc)) 
             {
-                npcList.Add(curNPC);
+                npcList.Add(cNpc);
             }
 
         }
@@ -78,7 +93,8 @@ public class PlayerBehavor : MonoBehaviour
         if (collision.CompareTag("NPC"))
         {
             GameObject curExitNpc = collision.transform.parent.gameObject;
-            if (npcList.Contains(curNPC)) 
+            curExitNpc.GetComponent<NonPlayerCharacter>().HidePressEUI();
+            if (npcList.Contains(curExitNpc)) 
             {
                 npcList.Remove(curExitNpc);
             }                        
@@ -87,21 +103,39 @@ public class PlayerBehavor : MonoBehaviour
 
     void GetTalkNpc() 
     {
-        if (npcList.Count>=1) 
+        if (npcList.Count >= 1)
         {
             GameObject tempNpc = npcList[0];
             float minDistance = float.MaxValue;
-            foreach (var npc in npcList) 
+            foreach (var npc in npcList)
             {
                 float curDistance = Vector2.Distance(this.transform.position, npc.transform.position);
-                if (curDistance < minDistance) 
+                if (curDistance < minDistance)
                 {
-                    minDistance = curDistance;  
+                    if (curNPC!=null) 
+                    {
+                        CloseCurNPCUI();
+                    }
+                    minDistance = curDistance;
                     tempNpc = npc;
                 }
             }
             curNPC = tempNpc;
         }
+        else 
+        {
+            curNPC = null;
+        }
+    }
+
+    void CloseCurNPCUI()
+    {
+        curNPC.GetComponent<NonPlayerCharacter>().HidePressEUI();
+    }
+
+    void ShowPressUI(GameObject cNpc) 
+    {
+        cNpc.GetComponent<NonPlayerCharacter>().ShowPressEUI();
     }
 
     //接收UIManager发出的通知

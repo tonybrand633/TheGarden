@@ -280,6 +280,7 @@ public class PlayerMovement : MonoBehaviour
         //有延迟的加速或者抵达当前速度
         float targetSpeed = movementInput.x * Data.runMaxSpeed;
         targetSpeed = Mathf.Lerp(rb.velocity.x, targetSpeed, lerpAmount);
+        //Debug.Log("Target Speed" + targetSpeed);
 
         //rb.velocity.x是会随着后面AddForce改变的，在没有摩擦力的情况下，数值一直增大，直到等于targetSpeed
         //那么speedDif的数值会一直减小直到为0
@@ -313,6 +314,7 @@ public class PlayerMovement : MonoBehaviour
         //以1为标准,0<velPower<1,velPower是起到了一个缓解作用
         //如果velPower>1就是一个刺激增强的作用
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, Data.velPower) * Mathf.Sign(speedDif);
+        //Debug.Log(movement);
 
         //Log实时查看
         //Debug.Log($"<color=green>  speedDif  :</color> {speedDif:F1} <color=green>  movement  :</color> {movement:F1}");
