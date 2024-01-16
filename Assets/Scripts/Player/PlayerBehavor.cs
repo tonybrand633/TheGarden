@@ -112,10 +112,6 @@ public class PlayerBehavor : MonoBehaviour
                 float curDistance = Vector2.Distance(this.transform.position, npc.transform.position);
                 if (curDistance < minDistance)
                 {
-                    if (curNPC!=null) 
-                    {
-                        CloseCurNPCUI();
-                    }
                     minDistance = curDistance;
                     tempNpc = npc;
                 }

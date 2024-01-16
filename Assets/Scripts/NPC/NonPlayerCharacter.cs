@@ -103,7 +103,7 @@ public class NonPlayerCharacter : MonoBehaviour,ICanTalkWith
     public void ShowPressEUI() 
     {
         pressE.SetActive(true);
-        pressE.GetComponent<Animator>().Play("PressEAnimation");
+        //pressE.GetComponent<Animator>().Play("PressEAnimation");        
     }
 
     public void HidePressEUI() 

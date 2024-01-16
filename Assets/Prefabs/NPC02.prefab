@@ -201,7 +201,7 @@ Transform:
   m_Children:
   - {fileID: 1745252557231757430}
   - {fileID: 1745252557317627346}
-  - {fileID: 2608026782354695002}
+  - {fileID: 6258176156973220174}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -238,13 +238,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1939686c1f47ba44ae9054cd510e900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canTalk: 0
   dialogText: {fileID: 11400000, guid: dac49ddd438d52046b38d36439e343a8, type: 2}
   openContent: []
   loopContent: []
   hiddenContent: []
   senderRecieveObject: []
-  pressE: {fileID: 2608026782354695003}
---- !u!1001 &5587608661773943002
+  pressE: {fileID: 6258176156973220175}
+--- !u!1001 &4567561508303610574
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -301,13 +302,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 327b918a88ece1a458dbb585d23ac6dc, type: 3}
---- !u!4 &2608026782354695002 stripped
+--- !u!4 &6258176156973220174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7618611671914406784, guid: 327b918a88ece1a458dbb585d23ac6dc, type: 3}
-  m_PrefabInstance: {fileID: 5587608661773943002}
+  m_PrefabInstance: {fileID: 4567561508303610574}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2608026782354695003 stripped
+--- !u!1 &6258176156973220175 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7618611671914406785, guid: 327b918a88ece1a458dbb585d23ac6dc, type: 3}
-  m_PrefabInstance: {fileID: 5587608661773943002}
+  m_PrefabInstance: {fileID: 4567561508303610574}
   m_PrefabAsset: {fileID: 0}
