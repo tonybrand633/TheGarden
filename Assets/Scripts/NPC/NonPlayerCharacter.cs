@@ -17,11 +17,11 @@ public class NonPlayerCharacter : MonoBehaviour,ICanTalkWith
     public string[] loopContent;
     public string[] hiddenContent;
 
-    [Header("解锁通知对象")]
+    [Header("解锁通知对象开启隐藏对话")]
     public NonPlayerCharacter[] senderRecieveObject;
 
     [Header("对话UI显示")]
-    public GameObject pressE;  //需要随着NPC一起转向的物体
+    public GameObject pressE;  //该物体需要随着NPC一起转向的物体
 
 
     // Start is called before the first frame update

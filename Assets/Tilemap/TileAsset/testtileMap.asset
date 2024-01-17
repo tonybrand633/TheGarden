@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: testtileMap
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 7482667652216324306, guid: 9d712531a534a0344a107a5923933699, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 2173b2a402bcf394c95f90316c74fcec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

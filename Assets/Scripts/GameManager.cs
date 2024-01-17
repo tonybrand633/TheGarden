@@ -6,10 +6,29 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameManager : MonoBehaviour
 {
+    public string[] SceneName;
+
     const string GameManagerKey = "GameManager";
 
+    public static GameManager instance;
+
+    public static GameManager Instance 
+    {
+        get 
+        {
+            if (instance == null)
+            {
+                GameObject gameManagerObject = new GameObject("GameManager");
+                instance = gameManagerObject.AddComponent<GameManager>();
+            }
+            return instance;
+        }
+    }
+
+    public bool hasUIScene = true;
     public UIManager uiManager;
 
+    //在加载场景之前，启用这个方法
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitGameManager()
     {
@@ -25,7 +44,22 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SceneInfo sceneInfo = FindObjectOfType<SceneInfo>();
+        if (sceneInfo!=null) 
+        {
+            hasUIScene = sceneInfo.hasUIScene;
+        }
+
         //初始化UIManager
-        uiManager = UIManager.Instance;    
+        if (hasUIScene) 
+        {
+            uiManager = UIManager.Instance;
+        }
+
+    }
+
+    public void Test() 
+    {
+        Debug.Log("Callback From Player");
     }
 }
