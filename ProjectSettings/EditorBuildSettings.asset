@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestTalkScene.unity
     guid: 336140f06934c2c4a9e48a5934dce42b
+  - enabled: 1
+    path: Assets/Scenes/PlayableScene.unity
+    guid: c13be9b1b02744c4ebfd54a5155b8295
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 80c2db7504b84334285b5c720ee952ec, type: 2}

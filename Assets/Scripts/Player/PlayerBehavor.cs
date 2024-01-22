@@ -24,7 +24,6 @@ public class PlayerBehavor : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.Test();
         npcList = new List<GameObject>();
         playerMovementScripts = GetComponent<PlayerMovement>();
         rig = GetComponent<Rigidbody2D>();

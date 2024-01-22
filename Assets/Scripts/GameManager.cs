@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     const string GameManagerKey = "GameManager";
 
-    public static GameManager instance;
+    private static GameManager instance;
 
     public static GameManager Instance 
     {
@@ -25,7 +26,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool hasUIScene = true;
+
+    bool hasUIScene = true;
     public UIManager uiManager;
 
     //在加载场景之前，启用这个方法
@@ -58,8 +60,16 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void Test() 
+    public void LoadScene(string sceneName) 
     {
-        Debug.Log("Callback From Player");
+        SceneManager.LoadScene(sceneName);
+    }
+
+
+    public void AnalyzeTheSignal(SignalInfoHolder signalInfoHolder) 
+    {
+        string sceneName = signalInfoHolder.sceneName;
+        int sceneIndex = signalInfoHolder.sceneIndex;
+
     }
 }
