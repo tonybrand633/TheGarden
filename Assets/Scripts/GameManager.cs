@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     const string GameManagerKey = "GameManager";
 
+
+
     private static GameManager instance;
 
     public static GameManager Instance 
@@ -60,9 +62,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void LoadScene(string sceneName) 
+    public void LoadSceneName(string sceneName) 
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void LoadSceneByIndex(int index) 
+    {
+        SceneManager.LoadScene(index);
     }
 
 
@@ -70,6 +77,12 @@ public class GameManager : MonoBehaviour
     {
         string sceneName = signalInfoHolder.sceneName;
         int sceneIndex = signalInfoHolder.sceneIndex;
-
+        if (sceneName != "")
+        {
+            LoadSceneName(sceneName);
+        } else if (sceneIndex!=-1) 
+        {
+            LoadSceneByIndex(sceneIndex);
+        }
     }
 }

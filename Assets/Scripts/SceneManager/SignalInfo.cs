@@ -8,7 +8,6 @@ public class SignalInfo : MonoBehaviour
     public SignalInfoHolder SignalInfoHolder;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Something Enter");
         GameManager.Instance.AnalyzeTheSignal(SignalInfoHolder);
     }
 }
