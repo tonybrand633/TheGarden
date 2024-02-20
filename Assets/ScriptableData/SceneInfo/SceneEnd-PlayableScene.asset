@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48994ed89fd4873409f432c5db261447, type: 3}
   m_Name: SceneEnd-PlayableScene
   m_EditorClassIdentifier: 
-  sceneName: PlayableScene
+  sceneName: BeerHouse
   sceneIndex: -1

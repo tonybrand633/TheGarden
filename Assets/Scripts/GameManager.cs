@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     bool hasUIScene = true;
     public UIManager uiManager;
+    public TimerManager timerManager;
 
     //在加载场景之前，启用这个方法
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -59,6 +60,8 @@ public class GameManager : MonoBehaviour
         {
             uiManager = UIManager.Instance;
         }
+
+        timerManager = TimerManager.Instance;
 
     }
 

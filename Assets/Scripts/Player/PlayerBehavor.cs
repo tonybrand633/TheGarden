@@ -9,8 +9,10 @@ public class PlayerBehavor : MonoBehaviour
     public bool dialogOpen;
     public bool dialogClose;
 
+    public GameObject CurBeerCan;
+
     public List<GameObject> npcList;
-    public GameObject curNPC;
+    public GameObject curNPC;    
 
     //SomeSingal
     //Index0：对话框打开
