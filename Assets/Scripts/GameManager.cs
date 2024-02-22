@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("FirstLoadScene")) 
         {
+            Player = GameObject.FindObjectOfType<PlayerBehavor>().gameObject;
+            Player.GetComponent<PlayerMovement>().isFacingRight = true;
             Debug.Log("Start Load Scene");
             GetSceneInfo();
             PlayerPrefs.SetInt("FirstLoadScene", 1);
@@ -93,9 +95,16 @@ public class GameManager : MonoBehaviour
                 Player.transform.localScale = localScale;
                 Player.GetComponent<PlayerMovement>().isFacingRight = false;
             }
+            else 
+            {
+                Debug.Log("Face Right");
+                Player.GetComponent<PlayerMovement>().isFacingRight = true;
+            }
             
         }      
     }
+
+    
 
     private void GetSceneInfo() 
     {
@@ -123,6 +132,12 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.activeSceneChanged -= OnSceneChanged;
         //Debug.Log("<color=yellow>Disable</color>");
+    }
+
+    //关闭应用后采用这个方法
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteKey("FirstLoadScene");
     }
 
     public void AnalyzeTheSignal(SignalInfoHolder signalInfoHolder)

@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool _isJumpCut;
     public bool _isJumpFalling;
-    
+
 
     //Timer
     public float lastOnGroundTime;
@@ -70,7 +70,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         SetGravity(Data.gravityScale);
-        //isFacingRight = true;
     }
 
     // Update is called once per frame
@@ -324,12 +323,19 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
     }
 
-    private void Turn()
+    private void TurnLeft()
     {
         Vector3 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
-        isFacingRight = !isFacingRight;
+        isFacingRight = false;
+    }
+    private void TurnRight()
+    {
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
+        isFacingRight = true;
     }
 
     #endregion
@@ -394,9 +400,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void CheckDirectionToFace(bool isMovingRight)
     {
-        if (isMovingRight != isFacingRight)
+        if (isMovingRight&&!isFacingRight)
         {
-            Turn();
+            TurnRight();
+        }
+        if (!isMovingRight&&isFacingRight) 
+        {
+            TurnLeft();
         }
     }
 
