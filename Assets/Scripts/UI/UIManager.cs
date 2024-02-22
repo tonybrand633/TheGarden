@@ -31,15 +31,20 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("UIManager Awake");
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    public void InitUIManager() 
     {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         dialogUI = canvas.transform.Find("DialogBox").GetComponent<DialogUI>();
         playerBehavor = FindObjectOfType<PlayerBehavor>();
+        if (canvas == null) 
+        {
+            Debug.Log("Could Not Find Canvas");
+        }
     }
 
     /// <summary>

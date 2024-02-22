@@ -13,7 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public PlayerData Data;
 
     #region StateParameters
-    public bool isFacingRight { get; private set; }
+
+    [SerializeField]
+    public bool isFacingRight;
     public bool isDashing { get; private set; }
     public bool isJumping;
 
@@ -68,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         SetGravity(Data.gravityScale);
-        isFacingRight = true;
+        //isFacingRight = true;
     }
 
     // Update is called once per frame

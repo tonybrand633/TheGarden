@@ -5,4 +5,5 @@ using UnityEngine;
 public class SceneInfo : MonoBehaviour
 {
     public bool hasUIScene;
+    public Transform[] spawnPos;
 }
