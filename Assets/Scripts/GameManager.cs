@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("FirstLoadScene")) 
         {
-            Player = GameObject.FindObjectOfType<PlayerBehavor>().gameObject;
+            Player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
             Player.GetComponent<PlayerMovement>().isFacingRight = true;
             Debug.Log("Start Load Scene");
             GetSceneInfo();
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     {
         GetSceneInfo();
         //寻找玩家角色
-        Player = GameObject.FindObjectOfType<PlayerBehavor>().gameObject;
+        Player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
         if (PlayerPrefs.HasKey("SpawnID")&&PlayerPrefs.HasKey("SpawnFaceRight")) 
         {
             spawnID = PlayerPrefs.GetInt("SpawnID");
@@ -116,7 +116,6 @@ public class GameManager : MonoBehaviour
         if (hasUIScene)
         {
             uiManager = UIManager.Instance;
-            uiManager.InitUIManager();
         }
         //初始化timerManager
         timerManager = TimerManager.Instance;
