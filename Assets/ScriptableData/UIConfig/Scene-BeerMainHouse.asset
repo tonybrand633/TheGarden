@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb4eb87c1a51d94db3c0cb6d399e0d7, type: 3}
-  m_Name: NPC01DialogText
+  m_Script: {fileID: 11500000, guid: 1d1996639cc6f4c40bc965984059db63, type: 3}
+  m_Name: Scene-BeerMainHouse
   m_EditorClassIdentifier: 
-  openText:
-  - "\u5C0F\u6770\u5440\uFF0C\u4ECA\u5929\u8FD9\u4E48\u65E9\u5C31\u8D77\u5E8A\u5566\uFF1F"
-  loopText:
-  - "\u6162\u70B9\uFF0C\u522B\u6454\u7740\u5566\uFF01"
-  hiddenText: []
+  uiItems:
+  - key: 
+    uiPrefab: {fileID: 0}
