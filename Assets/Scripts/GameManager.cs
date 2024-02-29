@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private GameObject Player;
     private int spawnID;
     private int faceRight;
-    private bool hasUIScene = true;
+    private bool hasUIScene;
 
     const string GameManagerKey = "GameManager";
 
@@ -112,10 +112,12 @@ public class GameManager : MonoBehaviour
         curSceneInfo = FindObjectOfType<SceneInfo>();
         hasUIScene = curSceneInfo.hasUIScene;
 
-        //初始化UIManager
+        //初始化UIManager,并且根据场景的信息来加载对应的UI
         if (hasUIScene)
         {
             uiManager = UIManager.Instance;
+            uiManager.uiConfig = curSceneInfo.uiConfig;
+            Debug.Log("我加载到场景啦！");
         }
         //初始化timerManager
         timerManager = TimerManager.Instance;
@@ -150,7 +152,7 @@ public class GameManager : MonoBehaviour
         else 
         {
             faceRight = -1;
-        }
+        }                                                
         PlayerPrefs.SetInt("SpawnFaceRight", faceRight);
         string sceneName = signalInfoHolder.sceneName;
         int sceneIndex = signalInfoHolder.sceneIndex;

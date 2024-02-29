@@ -7,6 +7,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public UIConfig uiConfig;
+
     private Dictionary<string, UIBase> uiScreens = new Dictionary<string, UIBase>();
 
 
@@ -30,7 +31,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         Debug.Log("UIManager Awake");
-        instance = this;
+        instance = this;        
         DontDestroyOnLoad(gameObject);
     }
 

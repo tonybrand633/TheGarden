@@ -6,4 +6,6 @@ public class SceneInfo : MonoBehaviour
 {
     public bool hasUIScene;
     public Transform[] spawnPos;
+
+    public UIConfig uiConfig;
 }

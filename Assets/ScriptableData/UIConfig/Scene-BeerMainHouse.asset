@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Scene-BeerMainHouse
   m_EditorClassIdentifier: 
   uiItems:
-  - key: 
-    uiPrefab: {fileID: 0}
+  - key: DialoguePanel
+    uiPrefab: {fileID: 4059484576878175225, guid: f40027c62d868114b89706d17f8ce83e, type: 3}

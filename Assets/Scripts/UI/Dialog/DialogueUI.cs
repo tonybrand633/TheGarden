@@ -55,7 +55,7 @@ public class DialogueUI : UIBase
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (dialogueText.text == currentSentence)
             {
