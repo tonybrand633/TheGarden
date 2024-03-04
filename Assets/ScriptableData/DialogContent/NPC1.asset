@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: DialogueTest
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  speakerName: Frank
+  m_Script: {fileID: 11500000, guid: dac2148753c43a94bb44a5ed4709cbc4, type: 3}
+  m_Name: NPC1
+  m_EditorClassIdentifier: 
+  speakerName: HandsonBoy
   sentences:
-  - "\u4F60\u597D\uFF0C\u6211\u53EB\u5F17\u5170\u514B"
-  - "\u6211\u662F\u6765\u5E2E\u52A9\u4F60\u917F\u9152\u7684"
+  - "\u4F60\u597D\u5440\uFF0C\u65C5\u884C\u8005\uFF01"
+  - "\u6B22\u8FCE\u6765\u5230XXXXX\u7CBE\u917F\u5C4B\uFF01"

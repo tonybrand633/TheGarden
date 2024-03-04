@@ -26,7 +26,6 @@ public class DialogueUI : UIBase
         {
             sentences.Enqueue(sentence);
         }
-
         DisplayNextSentence();
     }
 

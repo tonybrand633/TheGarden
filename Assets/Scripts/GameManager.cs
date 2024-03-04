@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         {
             uiManager = UIManager.Instance;
             uiManager.uiConfig = curSceneInfo.uiConfig;
-            Debug.Log("我加载到场景啦！");
+            uiManager.InitializedUIConfig(curSceneInfo.uiConfig);
         }
         //初始化timerManager
         timerManager = TimerManager.Instance;

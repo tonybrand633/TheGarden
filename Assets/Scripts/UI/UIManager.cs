@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -31,8 +32,42 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         Debug.Log("UIManager Awake");
-        instance = this;        
+        instance = this;
+        
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void InitializedUIConfig(UIConfig Config) 
+    {
+
+        RemoveUI();
+
+        uiConfig = Config;
+        Canvas canvas = CreateCanvas();
+        Transform UIParent = canvas.transform;
+
+        foreach (UIItem uiItem in uiConfig.uiItems)
+        {
+            UIBase baseUIScripts = uiItem.uiPrefab;
+            RegisterUI(uiItem.key, uiItem.uiPrefab);
+            Instantiate(baseUIScripts, UIParent);
+            CloseUI(uiItem.key);
+        }
+    }
+
+    private Canvas CreateCanvas()
+    {
+        // 创建Canvas GameObject
+        GameObject canvasObject = new GameObject("Canvas");
+        Canvas canvas = canvasObject.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvasObject.AddComponent<CanvasScaler>();
+        canvasObject.AddComponent<GraphicRaycaster>();
+
+        // 确保Canvas是UI的根
+        canvasObject.layer = LayerMask.NameToLayer("UI");
+
+        return canvas;
     }
 
     public void RegisterUI(string key, UIBase ui)
@@ -43,11 +78,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void RemoveUI() 
+    {
+        uiScreens.Clear();
+    }
+
     public void OpenUI(string key)
     {
         if (uiScreens.TryGetValue(key, out UIBase ui))
         {
             ui.Open();
+            Debug.Log("UI Open");
         }
     }
 
