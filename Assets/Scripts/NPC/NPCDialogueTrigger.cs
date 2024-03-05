@@ -11,8 +11,7 @@ public class NPCDialogueTrigger : MonoBehaviour
 
     void Start()
     {
-        pressE.SetActive(false);
-        dialogueUI = FindObjectOfType<DialogueUI>(); // 查找场景中的对话管理器实例
+        pressE.SetActive(false);         
     }
 
     void Update()
@@ -20,21 +19,12 @@ public class NPCDialogueTrigger : MonoBehaviour
         // 如果玩家在范围内并且按下了E键，则开始对话
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            UIManager.Instance.OpenUI("DialoguePanel");
-            dialogueUI.StartDialogue(dialogueData);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            UIManager.Instance.OpenUI("DialoguePanel");
-            
-            dialogueUI = FindObjectOfType<DialogueUI>(); // 查找场景中的对话管理器实例
-            dialogueUI.StartDialogue(dialogueData);
-        }
+            UIManager.Instance.OpenUI("DialoguePanel");                        
+        }       
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("PlayerEnter");
         if (other.CompareTag("Player")) 
         {
             
@@ -44,7 +34,7 @@ public class NPCDialogueTrigger : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {

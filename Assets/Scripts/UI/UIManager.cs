@@ -49,9 +49,10 @@ public class UIManager : MonoBehaviour
         foreach (UIItem uiItem in uiConfig.uiItems)
         {
             UIBase baseUIScripts = uiItem.uiPrefab;
-            RegisterUI(uiItem.key, uiItem.uiPrefab);
-            Instantiate(baseUIScripts, UIParent);
-            CloseUI(uiItem.key);
+
+            UIBase UIPanel = Instantiate(baseUIScripts, UIParent);
+            RegisterUI(uiItem.key, UIPanel);
+            //CloseUI(uiItem.key);
         }
     }
 
@@ -85,18 +86,21 @@ public class UIManager : MonoBehaviour
 
     public void OpenUI(string key)
     {
+
         if (uiScreens.TryGetValue(key, out UIBase ui))
         {
-            ui.Open();
-            Debug.Log("UI Open");
+            Debug.Log("OpenUI:" + key);
+            ui.gameObject.SetActive(true);
+
         }
     }
 
     public void CloseUI(string key)
-    {
+    {        
         if (uiScreens.TryGetValue(key, out UIBase ui))
         {
-            ui.Close();
+            Debug.Log("Find N Close:" + key);
+            ui.gameObject.SetActive(false);
         }
     }
 }

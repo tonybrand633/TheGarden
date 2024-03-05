@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         {
             Player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
             Player.GetComponent<PlayerMovement>().isFacingRight = true;
-            Debug.Log("Start Load Scene");
+            //Debug.Log("Start Load Scene");
             GetSceneInfo();
             PlayerPrefs.SetInt("FirstLoadScene", 1);
         }        
@@ -116,11 +116,10 @@ public class GameManager : MonoBehaviour
         if (hasUIScene)
         {
             uiManager = UIManager.Instance;
-            uiManager.uiConfig = curSceneInfo.uiConfig;
             uiManager.InitializedUIConfig(curSceneInfo.uiConfig);
         }
         //≥ı ºªØtimerManager
-        timerManager = TimerManager.Instance;
+        //timerManager = TimerManager.Instance;
     }
 
     private void OnEnable()

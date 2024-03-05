@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.UI;
 public class DialogueUI : UIBase
@@ -33,7 +34,7 @@ public class DialogueUI : UIBase
     {
         if (sentences.Count == 0)
         {
-            Close();
+            UIManager.Instance.CloseUI("DialoguePanel");
             return;
         }
 
@@ -54,27 +55,29 @@ public class DialogueUI : UIBase
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (dialogueText.text == currentSentence)
-            {
-                DisplayNextSentence();
-            }
-            else
-            {
-                StopAllCoroutines();
-                dialogueText.text = currentSentence; // 立即显示完整句子
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    if (dialogueText.text == currentSentence)
+        //    {
+        //        DisplayNextSentence();
+        //    }
+        //    else
+        //    {
+        //        StopAllCoroutines();
+        //        dialogueText.text = currentSentence; // 立即显示完整句子
+        //    }
+        //}
     }
 
     public override void Open()
     {
+        Debug.Log("开启UI");
         gameObject.SetActive(true);
     }
 
     public override void Close()
     {
+        Debug.Log("Close UI Dialogue");
         gameObject.SetActive(false);
     }
 }
