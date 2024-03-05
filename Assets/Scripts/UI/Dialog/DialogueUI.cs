@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class DialogueUI : UIBase
 {
-    public Text speakerNameText;
-    public Text dialogueText;
+    public TextMeshProUGUI speakerNameText;
+    public TextMeshProUGUI dialogueText;
     public float typingSpeed = 0.02f; // 控制文字显示速度的参数
 
     private Queue<string> sentences;
@@ -20,7 +21,11 @@ public class DialogueUI : UIBase
     public void StartDialogue(DialogueData dialogueData)
     {
         Open();
+        FindTheDialogueItems();
         sentences.Clear();
+        //找到显示的组件
+
+        Debug.Log(dialogueData.speakerName);
         speakerNameText.text = dialogueData.speakerName;
 
         foreach (string sentence in dialogueData.sentences)
@@ -79,5 +84,12 @@ public class DialogueUI : UIBase
     {
         Debug.Log("Close UI Dialogue");
         gameObject.SetActive(false);
+    }
+
+    private void FindTheDialogueItems() 
+    {
+        Transform textPanel = transform.Find("TextPanel");
+        speakerNameText = textPanel.Find("Name").GetComponent<TextMeshProUGUI>();
+        dialogueText = textPanel.Find("DialogueText").GetComponent<TextMeshProUGUI>(); 
     }
 }

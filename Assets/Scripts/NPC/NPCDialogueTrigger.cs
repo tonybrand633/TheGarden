@@ -7,6 +7,7 @@ public class NPCDialogueTrigger : MonoBehaviour
     public DialogueData dialogueData; // 分配给NPC的对话数据
     public DialogueUI dialogueUI; // 对话管理器的引用
     public bool playerInRange = false; // 玩家是否在范围内的标志
+    private bool dialogueOpen;
     public GameObject pressE;
 
     void Start()
@@ -19,7 +20,16 @@ public class NPCDialogueTrigger : MonoBehaviour
         // 如果玩家在范围内并且按下了E键，则开始对话
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            UIManager.Instance.OpenUI("DialoguePanel");                        
+            if (!dialogueOpen)
+            {
+                UIManager.Instance.OpenUI("DialoguePanel");
+                dialogueUI = FindObjectOfType<DialogueUI>();
+                dialogueOpen = true;
+            }
+            else 
+            {
+                dialogueUI.StartDialogue(dialogueData);
+            }            
         }       
     }
 

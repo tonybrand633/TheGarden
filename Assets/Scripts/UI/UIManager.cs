@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
 
             UIBase UIPanel = Instantiate(baseUIScripts, UIParent);
             RegisterUI(uiItem.key, UIPanel);
-            //CloseUI(uiItem.key);
+            CloseUI(uiItem.key);
         }
     }
 
@@ -91,7 +91,6 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log("OpenUI:" + key);
             ui.gameObject.SetActive(true);
-
         }
     }
 
@@ -99,7 +98,7 @@ public class UIManager : MonoBehaviour
     {        
         if (uiScreens.TryGetValue(key, out UIBase ui))
         {
-            Debug.Log("Find N Close:" + key);
+            Debug.Log("Find And Close:" + key);
             ui.gameObject.SetActive(false);
         }
     }

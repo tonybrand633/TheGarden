@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2148753c43a94bb44a5ed4709cbc4, type: 3}
   m_Name: NPC1
   m_EditorClassIdentifier: 
-  speakerName: HandsonBoy
+  speakerName: "\u5C0F\u6797"
   sentences:
   - "\u4F60\u597D\u5440\uFF0C\u65C5\u884C\u8005\uFF01"
   - "\u6B22\u8FCE\u6765\u5230XXXXX\u7CBE\u917F\u5C4B\uFF01"
