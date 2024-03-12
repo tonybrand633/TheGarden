@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public SceneInfo curSceneInfo;
     public UIManager uiManager;
+    public GameStateManager stateManager;
     public TimerManager timerManager;
 
     private static GameManager instance;
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
             if (instance == null)
             {
                 GameObject gameManagerObject = new GameObject("GameManager");
-                instance = gameManagerObject.AddComponent<GameManager>();
+                instance = gameManagerObject.AddComponent<GameManager>();                
             }
             return instance;
         }
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
             Player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
             Player.GetComponent<PlayerMovement>().isFacingRight = true;
             //Debug.Log("Start Load Scene");
+            InitAllManager();
             GetSceneInfo();
             PlayerPrefs.SetInt("FirstLoadScene", 1);
         }        
@@ -105,7 +107,7 @@ public class GameManager : MonoBehaviour
     }
 
     
-
+    //UIManager在这里加载
     private void GetSceneInfo() 
     {
         Debug.Log("<color=green>New Scene!!!GetSceneInfo!!!!!!</color>");
@@ -121,6 +123,13 @@ public class GameManager : MonoBehaviour
         //初始化timerManager
         //timerManager = TimerManager.Instance;
     }
+
+    private void InitAllManager() 
+    {        
+        stateManager = GameStateManager.Instance;
+        Debug.Log(stateManager);
+    }
+
 
     private void OnEnable()
     {

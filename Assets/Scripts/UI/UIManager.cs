@@ -98,7 +98,7 @@ public class UIManager : MonoBehaviour
     {        
         if (uiScreens.TryGetValue(key, out UIBase ui))
         {
-            Debug.Log("Find And Close:" + key);
+            Debug.Log("Close UI:" + key);
             ui.gameObject.SetActive(false);
         }
     }

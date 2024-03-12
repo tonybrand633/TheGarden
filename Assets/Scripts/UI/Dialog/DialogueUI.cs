@@ -20,19 +20,16 @@ public class DialogueUI : UIBase
 
     public void StartDialogue(DialogueData dialogueData)
     {
-        Open();
         FindTheDialogueItems();
         sentences.Clear();
-        //找到显示的组件
-
-        Debug.Log(dialogueData.speakerName);
+        //找到显示的组件        
         speakerNameText.text = dialogueData.speakerName;
 
         foreach (string sentence in dialogueData.sentences)
         {
             sentences.Enqueue(sentence);
         }
-        DisplayNextSentence();
+        //DisplayNextSentence();
     }
 
     public void DisplayNextSentence()
