@@ -2,45 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class DialogueUI : UIBase
 {
+    private bool isClosed;
     public TextMeshProUGUI speakerNameText;
     public TextMeshProUGUI dialogueText;
 
-    public string[] lines;
+    public string[] looplines;
+    public string[] hiddenlines;
+
+    public string[] targetLines;
     public float typingSpeed = 2f; // 控制文字显示速度的参数
 
     private int index;
 
     public void StartDialogue(DialogueData dialogueData)
-    {
+    {        
         FindTheDialogueItems();
         dialogueText.text = string.Empty;
         index = 0;
-        lines = dialogueData.sentences;
-        //找到显示的组件        
+        targetLines = dialogueData.sentences;
+        looplines = dialogueData.loopsentences;
+        hiddenlines = dialogueData.hiddensentences;
+        //找到显示的组件     
+        //之后的对话头像也是在这里设置   
         speakerNameText.text = dialogueData.speakerName;
         StartCoroutine(TypeLine());
     }
 
     public void KeyDownWay() 
     {
-        if (dialogueText.text == lines[index])
+        if(isClosed)
+        {
+            targetLines = looplines;
+        }
+        if (dialogueText.text == targetLines[index])
         {
             DisplayNextLine();
         }
         else 
         {
             StopAllCoroutines();
-            dialogueText.text = lines[index];
+            dialogueText.text = targetLines[index];
         }               
     }
 
     public void DisplayNextLine() 
     {
-        if (index < lines.Length - 1)
+        if (index < targetLines.Length - 1)
         {
             index++;
             dialogueText.text = string.Empty;
@@ -48,13 +60,27 @@ public class DialogueUI : UIBase
         }
         else
         {
+            isClosed = true;
             UIManager.Instance.CloseUI("DialoguePanel");
         }
     }
 
+    public void DisplayLoopLine()
+    {
+        if(looplines.Length>1)
+        {
+            index = Random.Range(0,looplines.Length);                         
+        }else
+        {
+            index = 0;
+        }
+        targetLines = looplines;
+        StartCoroutine(TypeLine());
+    }
+
     IEnumerator TypeLine() 
     {
-        foreach (char c in lines[index].ToCharArray()) 
+        foreach (char c in targetLines[index].ToCharArray()) 
         {
             dialogueText.text += c;
             yield return new WaitForSeconds(typingSpeed);

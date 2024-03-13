@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2148753c43a94bb44a5ed4709cbc4, type: 3}
+  m_Name: "\u7A0B\u54E5"
+  m_EditorClassIdentifier: 
+  headicon: {fileID: 0}
+  speakerName: "\u7A0B\u54E5"
+  sentences:
+  - "\u4F60\u597D\uFF0C\u8BF7\u95EE\u4F60\u51E0\u4F4D\uFF1F"
+  - "\u554A\uFF01\u4F60\u662F\u6765\u5B66\u4E60\u917F\u9152\u7684\u5427\uFF0C\u8001\u677F\u73B0\u5728\u6B63\u5728\u91CC\u9762\u917F\u5462"
+  - "\u5C31\u5728\u8FD9\u4E2A\u95E8\u540E\u9762\uFF0C\u8FDB\u53BB\u5C31\u662F\u5564\u9152\u917F\u9020\u95F4\u4E86"
+  loopsentences:
+  - "\u6709\u65F6\u5019\u6211\u4E5F\u5F88\u60F3\u5B66\u4E60\u917F\u9152\u5440~"
+  hiddensentences: []
