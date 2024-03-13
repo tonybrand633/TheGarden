@@ -25,7 +25,7 @@ public class NPCDialogueTrigger : MonoBehaviour
         {            
             playerInRange = true;
             pressE.SetActive(true);
-            GameStateManager.Instance.SetState(new UIState());
+            GameStateManager.Instance.SetState(new DialogState(dialogueData));
         }
     }
 

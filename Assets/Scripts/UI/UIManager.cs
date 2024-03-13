@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
 
     private Dictionary<string, UIBase> uiScreens = new Dictionary<string, UIBase>();
 
+    private Dictionary<string, bool> isUIScreensOpen = new Dictionary<string, bool>();
+
 
     //µ¥ÀýÄ£Ê½
     private static UIManager instance;
@@ -49,7 +51,6 @@ public class UIManager : MonoBehaviour
         foreach (UIItem uiItem in uiConfig.uiItems)
         {
             UIBase baseUIScripts = uiItem.uiPrefab;
-
             UIBase UIPanel = Instantiate(baseUIScripts, UIParent);
             RegisterUI(uiItem.key, UIPanel);
             CloseUI(uiItem.key);
@@ -77,6 +78,10 @@ public class UIManager : MonoBehaviour
         {
             uiScreens.Add(key, ui);
         }
+        if (!isUIScreensOpen.ContainsKey(key)) 
+        {
+            isUIScreensOpen.Add(key, false);
+        }
     }
 
     public void RemoveUI() 
@@ -86,11 +91,11 @@ public class UIManager : MonoBehaviour
 
     public void OpenUI(string key)
     {
-
         if (uiScreens.TryGetValue(key, out UIBase ui))
         {
             Debug.Log("OpenUI:" + key);
             ui.gameObject.SetActive(true);
+            isUIScreensOpen[key] = true;
         }
     }
 
@@ -100,6 +105,33 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log("Close UI:" + key);
             ui.gameObject.SetActive(false);
+            isUIScreensOpen[key] = false;
+        }
+    }
+
+
+    public bool isUIOpen(string key)
+    {
+        try
+        {
+            return isUIScreensOpen[key];
+        }
+        catch (System.Exception)
+        {
+
+            throw new System.Exception("Can't Find The UI by Key");
+        }               
+    }
+
+    public UIBase GetUIPanel(string key) 
+    {
+        if (uiScreens.ContainsKey(key))
+        {
+            return uiScreens[key];
+        }
+        else 
+        {
+            return null;
         }
     }
 }

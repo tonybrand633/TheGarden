@@ -22,7 +22,6 @@ public class GameStateManager : MonoBehaviour
 
     void Awake()
     {
-
         instance = this;
         DontDestroyOnLoad(gameObject);
     }

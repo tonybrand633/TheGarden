@@ -9,11 +9,28 @@ public interface IState
     void HandleEKeyPress(ControlManager manager);
 }
 
-public class UIState : IState
+public class DialogState : IState
 {
+    DialogueUI dialogueUI;
+    DialogueData curData;
+    public DialogState(DialogueData data) 
+    {
+        curData = data;
+    }
+
+
     public void HandleEKeyPress(ControlManager manager)
     {
-        Debug.Log("UI State");
+        if (UIManager.Instance.isUIOpen("DialoguePanel"))
+        {
+            dialogueUI.KeyDownWay();
+        }
+        else 
+        {
+            UIManager.Instance.OpenUI("DialoguePanel");
+            dialogueUI = (DialogueUI)UIManager.Instance.GetUIPanel("DialoguePanel");
+            dialogueUI.StartDialogue(curData);
+        }     
     }
 }
 

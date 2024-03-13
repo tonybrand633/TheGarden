@@ -8,57 +8,65 @@ public class DialogueUI : UIBase
 {
     public TextMeshProUGUI speakerNameText;
     public TextMeshProUGUI dialogueText;
-    public float typingSpeed = 0.02f; // 控制文字显示速度的参数
 
-    private Queue<string> sentences;
-    private string currentSentence;
+    public string[] lines;
+    public float typingSpeed = 2f; // 控制文字显示速度的参数
 
-    void Awake()
-    {
-        sentences = new Queue<string>();
-    }
+    private int index;
 
     public void StartDialogue(DialogueData dialogueData)
     {
         FindTheDialogueItems();
-        sentences.Clear();
+        dialogueText.text = string.Empty;
+        index = 0;
+        lines = dialogueData.sentences;
         //找到显示的组件        
         speakerNameText.text = dialogueData.speakerName;
-
-        foreach (string sentence in dialogueData.sentences)
-        {
-            sentences.Enqueue(sentence);
-        }
-        //DisplayNextSentence();
+        StartCoroutine(TypeLine());
     }
 
-    public void DisplayNextSentence()
+    public void KeyDownWay() 
     {
-        if (sentences.Count == 0)
+        if (dialogueText.text == lines[index])
+        {
+            DisplayNextLine();
+        }
+        else 
+        {
+            StopAllCoroutines();
+            dialogueText.text = lines[index];
+        }               
+    }
+
+    public void DisplayNextLine() 
+    {
+        if (index < lines.Length - 1)
+        {
+            index++;
+            dialogueText.text = string.Empty;
+            StartCoroutine(TypeLine());
+        }
+        else
         {
             UIManager.Instance.CloseUI("DialoguePanel");
-            return;
         }
-
-        currentSentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(currentSentence));
     }
 
-    IEnumerator TypeSentence(string sentence)
+    IEnumerator TypeLine() 
     {
-        dialogueText.text = "";
-        foreach (char letter in sentence.ToCharArray())
+        foreach (char c in lines[index].ToCharArray()) 
         {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed); // 使用typingSpeed控制显示速度
+            dialogueText.text += c;
+            yield return new WaitForSeconds(typingSpeed);
         }
     }
+    
 
     public override void Open()
     {
         Debug.Log("开启UI");
         gameObject.SetActive(true);
+        
     }
 
     public override void Close()
