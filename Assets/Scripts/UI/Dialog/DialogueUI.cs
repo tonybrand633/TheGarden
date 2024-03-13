@@ -55,22 +55,6 @@ public class DialogueUI : UIBase
         }
     }
 
-    void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    if (dialogueText.text == currentSentence)
-        //    {
-        //        DisplayNextSentence();
-        //    }
-        //    else
-        //    {
-        //        StopAllCoroutines();
-        //        dialogueText.text = currentSentence; // 立即显示完整句子
-        //    }
-        //}
-    }
-
     public override void Open()
     {
         Debug.Log("开启UI");
