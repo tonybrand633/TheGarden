@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class DialogueUI : UIBase
 {
+    private DialogueData curData;
     private bool isClosed;
     public TextMeshProUGUI speakerNameText;
     public TextMeshProUGUI dialogueText;
@@ -24,9 +25,17 @@ public class DialogueUI : UIBase
         FindTheDialogueItems();
         dialogueText.text = string.Empty;
         index = 0;
+
+        curData = dialogueData;
         targetLines = dialogueData.sentences;
+
         looplines = dialogueData.loopsentences;
         hiddenlines = dialogueData.hiddensentences;
+
+        if(curData.isClosed)
+        {
+            targetLines = looplines;
+        }
         //找到显示的组件     
         //之后的对话头像也是在这里设置   
         speakerNameText.text = dialogueData.speakerName;
@@ -35,7 +44,7 @@ public class DialogueUI : UIBase
 
     public void KeyDownWay() 
     {
-        if(isClosed)
+        if(curData.isClosed)
         {
             targetLines = looplines;
         }
@@ -60,22 +69,10 @@ public class DialogueUI : UIBase
         }
         else
         {
-            isClosed = true;
+            curData.isClosed = true;
+            curData = null;
             UIManager.Instance.CloseUI("DialoguePanel");
         }
-    }
-
-    public void DisplayLoopLine()
-    {
-        if(looplines.Length>1)
-        {
-            index = Random.Range(0,looplines.Length);                         
-        }else
-        {
-            index = 0;
-        }
-        targetLines = looplines;
-        StartCoroutine(TypeLine());
     }
 
     IEnumerator TypeLine() 

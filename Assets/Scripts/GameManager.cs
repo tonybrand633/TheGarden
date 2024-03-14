@@ -76,7 +76,11 @@ public class GameManager : MonoBehaviour
     // 在切换场景后，返回上一个场景的坐标
     private void OnSceneChanged(Scene currentScene, Scene nextScene)
     {
-        GetSceneInfo();
+        if(UIManager.Instance.GetUIPanel("DialoguePanel")!=null)
+        {
+            Debug.Log("DialoguePanel is Found");
+        }
+        GetSceneInfo();        
         //寻找玩家角色
         Player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
         if (PlayerPrefs.HasKey("SpawnID")&&PlayerPrefs.HasKey("SpawnFaceRight")) 

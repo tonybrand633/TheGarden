@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2148753c43a94bb44a5ed4709cbc4, type: 3}
   m_Name: "\u7A0B\u54E5"
   m_EditorClassIdentifier: 
+  isClosed: 0
+  hasHiddenDialogue: 0
   headicon: {fileID: 0}
   speakerName: "\u7A0B\u54E5"
   sentences:

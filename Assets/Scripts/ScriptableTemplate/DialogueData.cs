@@ -4,6 +4,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Dialogue", menuName = "Dialogue/DialogueData")]
 public class DialogueData : ScriptableObject
 {
+    public bool isClosed;
+
+    public bool hasHiddenDialogue;
     public Image headicon;
     public string speakerName;
     [TextArea(3, 10)]

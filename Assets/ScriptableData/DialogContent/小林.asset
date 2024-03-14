@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2148753c43a94bb44a5ed4709cbc4, type: 3}
   m_Name: "\u5C0F\u6797"
   m_EditorClassIdentifier: 
+  isClosed: 0
+  hasHiddenDialogue: 0
   headicon: {fileID: 0}
   speakerName: "\u5C0F\u6797"
   sentences:
   - "\u4ECA\u5929\u600E\u4E48\u6709\u7A7A\u8FC7\u6765\u5440\uFF01"
   - "\u4E09\u9646\u6B63\u5728\u91CC\u9762\u917F\u9152\u5462\uFF0C\u4F60\u73B0\u5728\u53EF\u4EE5\u8FC7\u53BB\u770B\u770B\uFF01"
   loopsentences:
-  - "\u917F\u9152\u771F\u662F\u4E00\u95E8\u827A\u672F\u5440\uFF01"
+  - "\u6211\u4EEC\u7684\u5564\u9152\u914D\u65B9\u90FD\u662F\u9876\u7EA7\u7684\uFF01"
   hiddensentences: []
