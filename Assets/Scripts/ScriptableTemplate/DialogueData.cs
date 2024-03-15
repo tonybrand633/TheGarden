@@ -7,7 +7,7 @@ public class DialogueData : ScriptableObject
     public bool isClosed;
 
     public bool hasHiddenDialogue;
-    public Image headicon;
+    public Sprite headicon;
     public string speakerName;
     [TextArea(3, 10)]
     public string[] sentences;

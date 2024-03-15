@@ -280,6 +280,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ea6775bf6793af34785db39577df6c79, type: 2}
     - target: {fileID: 5578409564554046760, guid: 564a5404c51d22c459f86c82d9f55e1d, type: 3}
+      propertyPath: hasPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578409564554046760, guid: 564a5404c51d22c459f86c82d9f55e1d, type: 3}
       propertyPath: hasUIScene
       value: 1
       objectReference: {fileID: 0}
@@ -599,6 +603,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1563840131, guid: e3a64d754af82aa48b0dc3ad28f14085, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 827297315, guid: 038b65c41e9752641a44639f29de6950, type: 3}
+    - target: {fileID: 1563840131, guid: e3a64d754af82aa48b0dc3ad28f14085, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563840131, guid: e3a64d754af82aa48b0dc3ad28f14085, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563840131, guid: e3a64d754af82aa48b0dc3ad28f14085, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636909351081941174, guid: e3a64d754af82aa48b0dc3ad28f14085, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636909351081941174, guid: e3a64d754af82aa48b0dc3ad28f14085, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.33
+      objectReference: {fileID: 0}
     - target: {fileID: 6310591023052547640, guid: e3a64d754af82aa48b0dc3ad28f14085, type: 3}
       propertyPath: m_RootOrder
       value: 3

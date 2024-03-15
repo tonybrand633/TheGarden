@@ -12,6 +12,9 @@ public class DialogueUI : UIBase
     public TextMeshProUGUI speakerNameText;
     public TextMeshProUGUI dialogueText;
 
+    public Image HeadIcon;
+    public Sprite icon;
+
     public string[] looplines;
     public string[] hiddenlines;
 
@@ -28,9 +31,9 @@ public class DialogueUI : UIBase
 
         curData = dialogueData;
         targetLines = dialogueData.sentences;
-
         looplines = dialogueData.loopsentences;
         hiddenlines = dialogueData.hiddensentences;
+        icon = dialogueData.headicon;
 
         if(curData.isClosed)
         {
@@ -38,6 +41,13 @@ public class DialogueUI : UIBase
         }
         //找到显示的组件     
         //之后的对话头像也是在这里设置   
+        HeadIcon.sprite = icon;
+        //设置头像居中显示
+        //HeadIcon.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        //HeadIcon.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        //HeadIcon.rectTransform.anchoredPosition = new Vector2(0, 0);
+        
+        
         speakerNameText.text = dialogueData.speakerName;
         StartCoroutine(TypeLine());
     }
@@ -101,7 +111,9 @@ public class DialogueUI : UIBase
     private void FindTheDialogueItems() 
     {
         Transform textPanel = transform.Find("TextPanel");
+        Transform headPanel = transform.Find("Headicon");
         speakerNameText = textPanel.Find("Name").GetComponent<TextMeshProUGUI>();
         dialogueText = textPanel.Find("DialogueText").GetComponent<TextMeshProUGUI>(); 
+        HeadIcon = headPanel.GetComponent<Image>();
     }
 }

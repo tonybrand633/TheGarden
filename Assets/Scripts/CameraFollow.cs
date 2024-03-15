@@ -15,7 +15,10 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         camSize = Camera.main.orthographicSize;
-        target = GameObject.Find("Player").GetComponent<Transform>();
+        if(GameManager.Instance.hasPlayer)
+        {
+            target = GameObject.Find("Player").GetComponent<Transform>();
+        }
     }
 
     void Update()

@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
     private GameObject Player;
     private int spawnID;
     private int faceRight;
-    private bool hasUIScene;
+    public bool hasUIScene;
+
+    public bool hasPlayer;
 
     const string GameManagerKey = "GameManager";
 
@@ -52,10 +54,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (!PlayerPrefs.HasKey("FirstLoadScene")) 
+        if(GameObject.Find("Player")!=null)
         {
             Player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
             Player.GetComponent<PlayerMovement>().isFacingRight = true;
+        }
+        if (!PlayerPrefs.HasKey("FirstLoadScene")) 
+        {
             //Debug.Log("Start Load Scene");
             InitAllManager();
             GetSceneInfo();
@@ -76,13 +81,12 @@ public class GameManager : MonoBehaviour
     // 在切换场景后，返回上一个场景的坐标
     private void OnSceneChanged(Scene currentScene, Scene nextScene)
     {
-        if(UIManager.Instance.GetUIPanel("DialoguePanel")!=null)
-        {
-            Debug.Log("DialoguePanel is Found");
-        }
         GetSceneInfo();        
-        //寻找玩家角色
-        Player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
+        if(hasPlayer)
+        {
+            //寻找玩家角色
+            Player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
+        }
         if (PlayerPrefs.HasKey("SpawnID")&&PlayerPrefs.HasKey("SpawnFaceRight")) 
         {
             spawnID = PlayerPrefs.GetInt("SpawnID");
@@ -117,15 +121,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("<color=green>New Scene!!!GetSceneInfo!!!!!!</color>");
         curSceneInfo = FindObjectOfType<SceneInfo>();
         hasUIScene = curSceneInfo.hasUIScene;
-
+        hasPlayer = curSceneInfo.hasPlayer;
         //初始化UIManager,并且根据场景的信息来加载对应的UI
         if (hasUIScene)
         {
             uiManager = UIManager.Instance;
             uiManager.InitializedUIConfig(curSceneInfo.uiConfig);
         }
-        //初始化timerManager
-        //timerManager = TimerManager.Instance;
+        //也可以初始化其他的Manager
     }
 
     private void InitAllManager() 
