@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("UIManager Awake");
+        Debug.Log("UIManager::Awake");
         instance = this;
         
         DontDestroyOnLoad(gameObject);

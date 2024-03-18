@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isClosed: 0
   hasHiddenDialogue: 0
-  headicon: {fileID: 21300000, guid: f9e54e2109e71874db51db1b4289a2b9, type: 3}
+  headicon: {fileID: 21300000, guid: ccc49ae673ee4ef45836ab360396c712, type: 3}
   speakerName: "\u5C0F\u6797"
   sentences:
   - "\u4ECA\u5929\u600E\u4E48\u6709\u7A7A\u8FC7\u6765\u5440\uFF01"

@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
             if (instance == null)
             {
                 GameObject gameManagerObject = new GameObject("GameManager");
-                instance = gameManagerObject.AddComponent<GameManager>();                
+                instance = gameManagerObject.AddComponent<GameManager>();  
+                DontDestroyOnLoad(instance);                
             }
             return instance;
         }
@@ -41,9 +42,12 @@ public class GameManager : MonoBehaviour
     //在加载场景之前，启用这个方法
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitGameManager()
-    {
+    {        
+        if(instance!=null)
+        {
         Addressables.InstantiateAsync(GameManagerKey).Completed += OnInstantiated;
         Debug.Log("<color=green>Init GameManager!!!!!!!!BY Async</color>");
+        }
     }
 
     static void OnInstantiated(AsyncOperationHandle<GameObject> operationHandle) 
@@ -61,9 +65,10 @@ public class GameManager : MonoBehaviour
         }
         if (!PlayerPrefs.HasKey("FirstLoadScene")) 
         {
-            //Debug.Log("Start Load Scene");
-            InitAllManager();
+            Debug.Log("Start Load Scene");
             GetSceneInfo();
+            InitAllManager();
+
             PlayerPrefs.SetInt("FirstLoadScene", 1);
         }        
     }
@@ -115,11 +120,12 @@ public class GameManager : MonoBehaviour
     }
 
     
-    //UIManager在这里加载
+    //UIManager和一些有条件的Manager在这里加载
     private void GetSceneInfo() 
     {
-        Debug.Log("<color=green>New Scene!!!GetSceneInfo!!!!!!</color>");
+        Debug.Log("<color=green>GetSceneInfo!!!!!!</color>");
         curSceneInfo = FindObjectOfType<SceneInfo>();
+        //curSceneInfo = GameObject.Find("SceneInfo").GetComponent<SceneInfo>();
         hasUIScene = curSceneInfo.hasUIScene;
         hasPlayer = curSceneInfo.hasPlayer;
         //初始化UIManager,并且根据场景的信息来加载对应的UI
@@ -133,21 +139,20 @@ public class GameManager : MonoBehaviour
 
     private void InitAllManager() 
     {        
-        stateManager = GameStateManager.Instance;
-        Debug.Log(stateManager);
+        stateManager = GameStateManager.Instance;        
     }
 
 
     private void OnEnable()
     {
         SceneManager.activeSceneChanged += OnSceneChanged;
-        //Debug.Log("<color=yellow>Enable</color>");
+        Debug.Log("<color=yellow>Enable</color>");
     }
 
     private void OnDisable()
     {
         SceneManager.activeSceneChanged -= OnSceneChanged;
-        //Debug.Log("<color=yellow>Disable</color>");
+        Debug.Log("<color=yellow>Disable</color>");
     }
 
     //关闭应用后采用这个方法

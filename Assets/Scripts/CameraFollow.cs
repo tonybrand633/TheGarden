@@ -10,27 +10,27 @@ public class CameraFollow : MonoBehaviour
     public Transform LeftBound;
     public Transform RightBound;
     
-    Transform target;
+    public Transform target;
 
     void Start()
     {
-        camSize = Camera.main.orthographicSize;
-        if(GameManager.Instance.hasPlayer)
-        {
-            target = GameObject.Find("Player").GetComponent<Transform>();
-        }
+        camSize = Camera.main.orthographicSize;        
     }
 
     void Update()
     {
-        
+        if(GameManager.Instance.hasPlayer)
+        {
+            Debug.Log("Find Player");
+            target = GameObject.Find("Player").GetComponent<Transform>();
+        }
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         if (target!=null) 
-        {
+        {            
             Vector3 targetPosition = target.transform.position;
 
             //Vector3 moveToPos = Vector3.Lerp(transform.position, targetPosition, u*Time.deltaTime);

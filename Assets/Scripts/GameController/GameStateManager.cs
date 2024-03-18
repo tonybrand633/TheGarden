@@ -22,6 +22,7 @@ public class GameStateManager : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("GameStateManager::Awake");
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
