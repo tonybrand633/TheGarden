@@ -67,8 +67,8 @@ public class GameManager : MonoBehaviour
     {
         if(GameObject.Find("Player")!=null)
         {
-            Player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
-            Player.GetComponent<PlayerMovement>().isFacingRight = true;
+            Player = GameObject.FindObjectOfType<PlayerCharacter>().gameObject;
+            Player.GetComponent<PlayerCharacter>().isFaceRight = true;
             Camera main = Camera.main;
             main.AddComponent<CameraFollow>();
         }
