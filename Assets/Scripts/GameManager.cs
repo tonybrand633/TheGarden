@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -9,9 +10,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("出生位置")]
     private GameObject Player;
     private int spawnID;
     private int faceRight;
+
+    [Header("场景信息")]
     public bool hasUIScene;
 
     public bool hasPlayer;
@@ -20,6 +24,9 @@ public class GameManager : MonoBehaviour
 
 
     public SceneInfo curSceneInfo;
+
+
+    [Header("游戏的Manager")]    
     public UIManager uiManager;
     public GameStateManager stateManager;
     public TimerManager timerManager;
@@ -32,26 +39,26 @@ public class GameManager : MonoBehaviour
         {
             if (instance == null)
             {
-                GameObject gameManagerObject = new GameObject("GameManager");
-                instance = gameManagerObject.AddComponent<GameManager>();  
-                DontDestroyOnLoad(instance);                
+                Debug.Log("Instance is NULL");     
             }
             return instance;
         }
     }
+
     //在加载场景之前，启用这个方法
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitGameManager()
     {        
-        if(instance!=null)
+        if(instance==null)
         {
-        Addressables.InstantiateAsync(GameManagerKey).Completed += OnInstantiated;
-        Debug.Log("<color=green>Init GameManager!!!!!!!!BY Async</color>");
+            Addressables.InstantiateAsync(GameManagerKey).Completed += OnInstantiated;            
+            Debug.Log("<color=green>Init GameManager!!!!!!!!BY Async</color>");
         }
     }
 
     static void OnInstantiated(AsyncOperationHandle<GameObject> operationHandle) 
     {
+        instance = operationHandle.Result.GetComponent<GameManager>();
         //不要摧毁这个异步加载出来的东西
         DontDestroyOnLoad(operationHandle.Result);        
     }
@@ -62,13 +69,14 @@ public class GameManager : MonoBehaviour
         {
             Player = GameObject.FindObjectOfType<PlayerMovement>().gameObject;
             Player.GetComponent<PlayerMovement>().isFacingRight = true;
+            Camera main = Camera.main;
+            main.AddComponent<CameraFollow>();
         }
         if (!PlayerPrefs.HasKey("FirstLoadScene")) 
         {
             Debug.Log("Start Load Scene");
             GetSceneInfo();
             InitAllManager();
-
             PlayerPrefs.SetInt("FirstLoadScene", 1);
         }        
     }

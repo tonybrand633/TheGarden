@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ControlManager : MonoBehaviour
 {
+    //这个是控制玩家的控制器
     private void Start()
     {
-        GameStateManager.Instance.SetState(new ExploreState());
+        //GameStateManager.Instance.SetState(new ExploreState());
     }
 
     void Update()

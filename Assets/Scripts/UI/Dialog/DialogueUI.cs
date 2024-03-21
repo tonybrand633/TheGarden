@@ -34,7 +34,7 @@ public class DialogueUI : UIBase
         looplines = dialogueData.loopsentences;
         hiddenlines = dialogueData.hiddensentences;
         icon = dialogueData.headicon;
-
+        
         if(curData.isClosed)
         {
             targetLines = looplines;

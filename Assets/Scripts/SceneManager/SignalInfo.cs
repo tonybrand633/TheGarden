@@ -9,6 +9,6 @@ public class SignalInfo : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameManager.Instance.AnalyzeTheSignal(SignalInfoHolder);
+        GameStateManager.Instance.SetState(new ChangeSceneState());
     }
 }
